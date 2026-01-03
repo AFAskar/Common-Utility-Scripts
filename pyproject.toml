@@ -11,15 +11,3 @@ dependencies = [
     "fuzzywuzzy>=0.18.0",
     "PyMuPDF>=1.22.5",
 ]
-
-[project.scripts]
-duplicate-deleter = "duplicate_deleter:main"
-emptyfolder-deleter = "emptyfolder_deleter:main"
-extension-sorter = "extenstion_sorter:main"
-folder-sorter = "folder_sorter:main"
-href-parser = "href_parser:main"
-macosx-folder-deleter = "macosx_folder_deleter:main"
-pdf-converter = "pdf_converter:main"
-pdf-link-extractor = "pdf_link_extractor:main"
-prefix-matcher = "prefix_matcher:main"
-wav-to-flac = "wav_to_flac:main"
