@@ -3,6 +3,38 @@
 This repository contains a collection of Python scripts for managing and organizing files that i use in conjunction czkawka.
 Each script performs a specific task such as deleting duplicates, sorting files by extension, organizing files by prefix, and more.
 
+## Installation
+
+This project uses `uv` for dependency management. To use the CLI tool, you should install it using `uv`:
+
+```bash
+uv tool install .
+```
+
+## Usage
+
+You can use the CLI tool `file-utils` to access all the utilities.
+
+To see the available commands, run:
+
+```bash
+file-utils --help
+```
+
+To run a specific command, use:
+
+```bash
+file-utils [COMMAND] [ARGS]
+```
+
+For example, to sort files by extension:
+
+```bash
+file-utils sort-by-extension txt --source ./input --destination ./output
+```
+
+Alternatively, you can run the individual scripts directly if you prefer, but the CLI tool provides a unified interface.
+
 ## Scripts
 
 ### 1. duplicate-deleter
@@ -54,10 +86,3 @@ This Script Converts Office 365 Formats into PDFs
 - Concatenate-all-mkv -- which concats video files
 
 whilst they say mkv and markdown it is a simple edit of the code to make them do other file extensions
-## Usage
-
-Each script can be executed independently. For example, to run the `duplicate-deleter` script, use the following command:
-
-```sh
-python duplicate-deleter 
-```
