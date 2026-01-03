@@ -8,7 +8,7 @@ Each script performs a specific task such as deleting duplicates, sorting files 
 This project uses `uv` for dependency management. To use the CLI tool, you should install it using `uv`:
 
 ```bash
-uv tool install .
+uv tool install git+https://github.com/AFAskar/Common-Utility-Scripts
 ```
 
 ## Usage
