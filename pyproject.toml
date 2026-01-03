@@ -8,11 +8,11 @@ dependencies = [
     "comtypes>=1.4.12",
     "docx2pdf>=0.1.8",
     "beautifulsoup4>=4.12.2",
-    "fuzzywuzzy>=0.18.0",
     "PyMuPDF>=1.22.5",
-    "ffmpeg>=1.4",
     "typer>=0.21.0",
     "rich>=13.0.0",
+    "ffmpeg-python>=0.2.0",
+    "pywin32>=311",
 ]
 
 [project.scripts]
