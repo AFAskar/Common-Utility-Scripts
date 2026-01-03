@@ -36,6 +36,7 @@ def sort_by_extension(
     extenstion_sorter.move_files(source, destination, extension)
 
 
+@app.command()
 def organize_by_prefix(
     directory: Path = typer.Argument(
         ..., help="Directory containing files to organize by prefix."
@@ -123,6 +124,7 @@ def empty_folder(
     print("Done moving empty folders.")
 
 
+@app.command()
 def convert_wav_to_flac(
     directory: Path = typer.Argument(
         ..., help="Directory containing WAV files to convert."
@@ -147,6 +149,7 @@ def delete_macosx_folders(
     print("Done deleting __MACOSX folders.")
 
 
+@app.command()
 def delete_duplicate_files(
     directory: Path = typer.Argument(
         ..., help="Directory to search for duplicate files."
@@ -193,3 +196,7 @@ def parse_href(
         print(f"Error: Input file '{html_file}' not found.")
     except Exception as e:
         print(f"Error: {e}")
+
+
+if __name__ == "__main__":
+    app()
