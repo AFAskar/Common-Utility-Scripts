@@ -45,6 +45,7 @@ dependencies = [
     { name = "beautifulsoup4" },
     { name = "comtypes" },
     { name = "docx2pdf" },
+    { name = "ffmpeg" },
     { name = "fuzzywuzzy" },
     { name = "pymupdf" },
 ]
@@ -54,6 +55,7 @@ requires-dist = [
     { name = "beautifulsoup4", specifier = ">=4.12.2" },
     { name = "comtypes", specifier = ">=1.4.12" },
     { name = "docx2pdf", specifier = ">=0.1.8" },
+    { name = "ffmpeg", specifier = ">=1.4" },
     { name = "fuzzywuzzy", specifier = ">=0.18.0" },
     { name = "pymupdf", specifier = ">=1.22.5" },
 ]
@@ -80,6 +82,12 @@ sdist = { url = "https://files.pythonhosted.org/packages/ab/5d/112531fff53cf6051
 wheels = [
     { url = "https://files.pythonhosted.org/packages/53/4f/1155781308281e67f80b829738a29e5354e03664c62311f753056afc873b/docx2pdf-0.1.8-py3-none-any.whl", hash = "sha256:00be1401fd486640314e993423a0a1cbdbc21142186f68549d962d505b2e8a12", size = 6741, upload-time = "2021-12-11T16:56:35.163Z" },
 ]
+
+[[package]]
+name = "ffmpeg"
+version = "1.4"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/f0/cc/3b7408b8ecf7c1d20ad480c3eaed7619857bf1054b690226e906fdf14258/ffmpeg-1.4.tar.gz", hash = "sha256:6931692c890ff21d39938433c2189747815dca0c60ddc7f9bb97f199dba0b5b9", size = 5055, upload-time = "2018-10-08T07:50:05.748Z" }
 
 [[package]]
 name = "fuzzywuzzy"

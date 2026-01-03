@@ -10,7 +10,5 @@ dependencies = [
     "beautifulsoup4>=4.12.2",
     "fuzzywuzzy>=0.18.0",
     "PyMuPDF>=1.22.5",
+    "ffmpeg>=1.4",
 ]
-
-[project.scripts]
-concat-md = "concatenate.Concatenate_all_Markdown:main"
