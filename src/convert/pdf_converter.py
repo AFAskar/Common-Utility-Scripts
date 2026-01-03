@@ -11,6 +11,8 @@ def convert_ppt_to_pdf(ppt_path, pdf_path):
     try:
         pythoncom.CoInitialize()  # Initialize COM library in this thread
         print(f"Converting {ppt_path} to {pdf_path}")
+        ppt_path = os.path.abspath(ppt_path)
+        pdf_path = os.path.abspath(pdf_path)
         powerpoint = comtypes.client.CreateObject("Powerpoint.Application")
         powerpoint.Visible = 1  # Make PowerPoint visible
         powerpoint.DisplayAlerts = False  # Disable alerts
@@ -30,6 +32,8 @@ def convert_ppt_to_pdf(ppt_path, pdf_path):
 def convert_docx_to_pdf(docx_path, pdf_path):
     try:
         print(f"Converting {docx_path} to {pdf_path}")
+        docx_path = os.path.abspath(docx_path)
+        pdf_path = os.path.abspath(pdf_path)
         docx_convert(docx_path, pdf_path)
         return True
     except Exception as e:
@@ -41,6 +45,8 @@ def convert_doc_to_pdf(doc_path, pdf_path):
     try:
         pythoncom.CoInitialize()  # Initialize COM library in this thread
         print(f"Converting {doc_path} to {pdf_path}")
+        doc_path = os.path.abspath(doc_path)
+        pdf_path = os.path.abspath(pdf_path)
         word = comtypes.client.CreateObject("Word.Application")
         word.Visible = 0
         word.DisplayAlerts = 0
