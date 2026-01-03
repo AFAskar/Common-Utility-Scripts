@@ -5,6 +5,8 @@ import shutil
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import pythoncom
 import argparse
+
+
 def convert_ppt_to_pdf(ppt_path, pdf_path):
     try:
         pythoncom.CoInitialize()  # Initialize COM library in this thread
@@ -20,9 +22,10 @@ def convert_ppt_to_pdf(ppt_path, pdf_path):
         print(f"Failed to convert PowerPoint {ppt_path} to PDF: {e}")
         return False
     finally:
-        if 'powerpoint' in locals():
+        if "powerpoint" in locals():
             powerpoint.Quit()
         pythoncom.CoUninitialize()  # Uninitialize COM library in this thread
+
 
 def convert_docx_to_pdf(docx_path, pdf_path):
     try:
@@ -32,6 +35,7 @@ def convert_docx_to_pdf(docx_path, pdf_path):
     except Exception as e:
         print(f"Failed to convert DOCX {docx_path} to PDF: {e}")
         return False
+
 
 def convert_doc_to_pdf(doc_path, pdf_path):
     try:
@@ -48,55 +52,68 @@ def convert_doc_to_pdf(doc_path, pdf_path):
         print(f"Failed to convert DOC {doc_path} to PDF: {e}")
         return False
     finally:
-        if 'word' in locals():
+        if "word" in locals():
             word.Quit()
         pythoncom.CoUninitialize()  # Uninitialize COM library in this thread
+
 
 def move_file(original_path, new_directory):
     try:
         if not os.path.exists(new_directory):
             os.makedirs(new_directory)
-        shutil.move(original_path, os.path.join(new_directory, os.path.basename(original_path)))
+        shutil.move(
+            original_path, os.path.join(new_directory, os.path.basename(original_path))
+        )
         return True
     except Exception as e:
         print(f"Failed to move file {original_path} to {new_directory}: {e}")
         return False
 
+
 def process_files(file_list, ppt_dir, doc_dir):
-    with ThreadPoolExecutor(max_workers=os.cpu_count()) as executor:
+    with ThreadPoolExecutor(max_workers=1) as executor:
         futures = []
         for file_path in file_list:
             file_name, file_extension = os.path.splitext(file_path)
-            pdf_path = file_name + '.pdf'
-            
-            if file_extension.lower() in ['.ppt', '.pptx']:
-                futures.append(executor.submit(convert_and_move, file_path, pdf_path, ppt_dir, 'ppt'))
-            elif file_extension.lower() in ['.doc', '.docx']:
-                futures.append(executor.submit(convert_and_move, file_path, pdf_path, doc_dir, 'doc'))
-        
+            pdf_path = file_name + ".pdf"
+
+            if file_extension.lower() in [".ppt", ".pptx"]:
+                futures.append(
+                    executor.submit(
+                        convert_and_move, file_path, pdf_path, ppt_dir, "ppt"
+                    )
+                )
+            elif file_extension.lower() in [".doc", ".docx"]:
+                futures.append(
+                    executor.submit(
+                        convert_and_move, file_path, pdf_path, doc_dir, "doc"
+                    )
+                )
+
         for future in as_completed(futures):
             future.result()  # Handle exceptions if needed
 
+
 def convert_and_move(file_path, pdf_path, new_directory, file_type):
-    if file_type == 'ppt':
+    if file_type == "ppt":
         if convert_ppt_to_pdf(file_path, pdf_path):
             move_file(file_path, new_directory)
-    elif file_type == 'doc':
-        if file_path.lower().endswith('.doc'):
+    elif file_type == "doc":
+        if file_path.lower().endswith(".doc"):
             if convert_doc_to_pdf(file_path, pdf_path):
                 move_file(file_path, new_directory)
-        elif file_path.lower().endswith('.docx'):
+        elif file_path.lower().endswith(".docx"):
             if convert_docx_to_pdf(file_path, pdf_path):
                 move_file(file_path, new_directory)
 
+
 def main():
-    parser = argparse.ArgumentParser(description='Convert PPT/DOC files to PDF.')
-    parser.add_argument("directory",
-                        help='Directory to search for files')
+    parser = argparse.ArgumentParser(description="Convert PPT/DOC files to PDF.")
+    parser.add_argument("directory", help="Directory to search for files")
     args = parser.parse_args()
     current_directory = args.directory
-    ppt_dir = os.path.join(current_directory, 'PPT')
-    doc_dir = os.path.join(current_directory, 'DOC')
+    ppt_dir = os.path.join(current_directory, "PPT")
+    doc_dir = os.path.join(current_directory, "DOC")
     file_list = []
 
     for root, dirs, files in os.walk(current_directory):
@@ -105,6 +122,7 @@ def main():
             file_list.append(file_path)
 
     process_files(file_list, ppt_dir, doc_dir)
+
 
 if __name__ == "__main__":
     main()
