@@ -17,7 +17,6 @@ dependencies = [
 
 [project.scripts]
 file-utils = "cli_tool.main:app"
-common-utility-scripts = "cli_tool.main:app"
 
 [build-system]
 requires = ["setuptools>=61.0"]
