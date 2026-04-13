@@ -5,6 +5,8 @@ Each script performs a specific task such as deleting duplicates, sorting files 
 
 ## Installation
 
+> Warning: This project is Windows-only. It depends on Windows-specific packages such as `pywin32`, and installation on Linux/macOS will fail.
+
 This project uses `uv` for dependency management. To use the CLI tool, you should install it using `uv`:
 
 ```bash
@@ -82,6 +84,7 @@ This script organizes files by their prefixes and moves them to respective direc
 This Script Converts Office 365 Formats into PDFs
 
 ### 8.Concatenate
+
 - Concatenate-all-Markdown -- which concats text files
 - Concatenate-all-mkv -- which concats video files
 
